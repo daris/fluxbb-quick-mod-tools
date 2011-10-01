@@ -2,17 +2,15 @@
 ##
 ##        Mod title:  Quick mod tools
 ##
-##      Mod version:  1.0.1
-##  Works on FluxBB:  1.4.2, 1.4.1, 1.4, 1.4-rc3
-##     Release date:  2010-09-08
-##      Review date:  YYYY-MM-DD (Leave unedited)
+##      Mod version:  1.0.2
+##  Works on FluxBB:  1.4.7, 1.4.6, 1.4.5, 1.4.4, 1.4.3, 1.4.2, 1.4.1, 1.4, 1.4-rc3
+##     Release date:  2011-10-01
+##      Review date:  2011-10-01
 ##           Author:  Daris (daris91@gmail.com)
 ##
 ##      Description:  Allows moderators quickly moderate topics (edit/delete/close/stick etc.)
 ##
 ##   Repository URL:  http://fluxbb.org/resources/mods/quick-mod-tools/
-##
-##        Upgrading:  Convert include/quick_mod_tools/topic.php file to UTF-8 encoding.
 ##
 ##   Affected files:  viewforum.php
 ##                    header.php
@@ -29,9 +27,9 @@
 #-------------[ 1. UPLOAD ]-----------------------
 #
 
-include/ajax_post_edit/ajax_post_edit.js
-include/ajax_post_edit/edit.php
-include/ajax_post_edit/style.css
+files/img/quick_mod_tools/ to /img/quick_mod_tools 
+files/include/quick_mod_tools/ to /include/quick_mod_tools
+files/lang/English/quick_mod_tools.php to /lang/English/quick_mod_tools.php
 
 #
 #-------------[ 2. OPEN ]----------------
@@ -53,8 +51,8 @@ if (basename($_SERVER['PHP_SELF']) == 'viewforum.php')
 {
 	$page_head['jquery'] = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>';
 	
-	$page_head['qmt_js'] = '<script type="text/javascript" src="include/quick_mod_tools/mod_tools.js"></script>';
-	$page_head['qmt_css'] = '<link rel="stylesheet" type="text/css" href="include/quick_mod_tools/style.css" />';
+	$page_head['qmt_js'] = '<script type="text/javascript" src="'.$pun_config['o_base_url'].'/include/quick_mod_tools/mod_tools.js"></script>';
+	$page_head['qmt_css'] = '<link rel="stylesheet" type="text/css" href="'.$pun_config['o_base_url'].'/include/quick_mod_tools/style.css" />';
 	
 	if (file_exists(PUN_ROOT.'lang/'.$pun_user['language'].'/quick_mod_tools.php'))
 		require PUN_ROOT.'lang/'.$pun_user['language'].'/quick_mod_tools.php';
