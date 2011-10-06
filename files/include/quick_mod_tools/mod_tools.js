@@ -1,5 +1,5 @@
 
-var mod_tools_url = 'include/quick_mod_tools/moderate.php';
+var mod_tools_url = base_url + '/include/quick_mod_tools/moderate.php';
 
 function edit_subject(fid, id, submit_name)
 {
@@ -24,7 +24,7 @@ function update_subject(fid, id)
 	subject = $('#subject').val();
 	
 	$.post(mod_tools_url + '?fid=' + fid + '&tid=' + id, {subject: subject}, function(data) {moderate_topic_onready(data)});
-	$('#t' + topic_id + ' .mod-tools').html('<img style="float: right" src="img/quick_mod_tools/loading.gif" />');
+	$('#t' + topic_id + ' .mod-tools').html('<img style="float: right" src="' + base_url + '/img/quick_mod_tools/loading.gif" />');
 }
 
 function moderate_topic(fid, id, action)
@@ -35,7 +35,7 @@ function moderate_topic(fid, id, action)
 		return;
 	
 	$.get(mod_tools_url + '?fid=' + fid + '&tid=' + id + '&action=' + action, function(data) {moderate_topic_onready(data)});
-	$('#t' + topic_id + ' .mod-tools').html('<img style="float: right" src="img/quick_mod_tools/loading.gif" />');
+	$('#t' + topic_id + ' .mod-tools').html('<img style="float: right" src="' + base_url + '/img/quick_mod_tools/loading.gif" />');
 }
 
 function moderate_topic_onready(data)
