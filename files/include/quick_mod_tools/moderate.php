@@ -70,26 +70,7 @@ elseif ($action == 'delete')
 		die($lang_common['No permission']);
 
 	require PUN_ROOT.'include/search_idx.php';
-	
-	// Delete the topic and any redirect topic
-	$db->query('DELETE FROM '.$db->prefix.'topics WHERE id='.$topic_id.' OR moved_to='.$topic_id) or error('Unable to delete topic', __FILE__, __LINE__, $db->error());
-
-	// Delete any subscriptions
-	$db->query('DELETE FROM '.$db->prefix.'subscriptions WHERE topic_id='.$topic_id) or error('Unable to delete subscriptions', __FILE__, __LINE__, $db->error());
-
-	// Create a list of the post IDs in this topic and then strip the search index
-	$result = $db->query('SELECT id FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to fetch posts', __FILE__, __LINE__, $db->error());
-
-	$post_ids = '';
-	while ($row = $db->fetch_row($result))
-		$post_ids .= ($post_ids != '') ? ','.$row[0] : $row[0];
-
-	// We have to check that we actually have a list of post IDs since we could be deleting just a redirect topic
-	if ($post_ids != '')
-		strip_search_index($post_ids);
-
-	// Delete posts
-	$db->query('DELETE FROM '.$db->prefix.'posts WHERE topic_id='.$topic_id) or error('Unable to delete posts', __FILE__, __LINE__, $db->error());
+	delete_topic($topic_id);
 
 	update_forum($fid);
 	

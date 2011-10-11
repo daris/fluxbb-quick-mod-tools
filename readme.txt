@@ -2,10 +2,10 @@
 ##
 ##        Mod title:  Quick mod tools
 ##
-##      Mod version:  1.0.3-dev
-##  Works on FluxBB:  1.4.7, 1.4.6, 1.4.5, 1.4.4, 1.4.3, 1.4.2, 1.4.1, 1.4, 1.4-rc3
-##     Release date:  2011-10-01
-##      Review date:  2011-10-01
+##      Mod version:  1.0.3
+##  Works on FluxBB:  1.4.7
+##     Release date:  2011-10-11
+##      Review date:  2011-10-11
 ##           Author:  Daris (daris91@gmail.com)
 ##
 ##      Description:  Allows moderators quickly moderate topics (edit/delete/close/stick etc.)
@@ -51,7 +51,6 @@ if (basename($_SERVER['PHP_SELF']) == 'viewforum.php')
 {
 	$page_head['jquery'] = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>';
 	
-	$page_head['qmt_js'] = '<script type="text/javascript" src="'.$pun_config['o_base_url'].'/include/quick_mod_tools/mod_tools.js"></script>';
 	$page_head['qmt_css'] = '<link rel="stylesheet" type="text/css" href="'.$pun_config['o_base_url'].'/include/quick_mod_tools/style.css" />';
 	
 	if (file_exists(PUN_ROOT.'lang/'.$pun_user['language'].'/quick_mod_tools.php'))
@@ -64,6 +63,7 @@ if (basename($_SERVER['PHP_SELF']) == 'viewforum.php')
 		$lang_qmt_js[] = '\''.$key.'\': \''.$value.'\'';
 	
 	$page_head['qmt_lang_js'] = '<script type="text/javascript">var base_url = \''.$pun_config['o_base_url'].'\';var lang_quick_mod_tools = {'.implode(', ', $lang_qmt_js).'}</script>';
+	$page_head['qmt_js'] = '<script type="text/javascript" src="'.$pun_config['o_base_url'].'/include/quick_mod_tools/mod_tools.js"></script>';
 }
 
 #
@@ -78,9 +78,8 @@ viewforum.php
 
 require PUN_ROOT.'lang/'.$pun_user['language'].'/forum.php';
 
-
 #
-#-------------[ 4. AFTER, ADD ]----------------
+#-------------[ 7. AFTER, ADD ]----------------
 #
 
 require PUN_ROOT.'lang/'.$pun_user['language'].'/misc.php';
@@ -88,7 +87,7 @@ require PUN_ROOT.'lang/'.$pun_user['language'].'/topic.php';
 require PUN_ROOT.'include/quick_mod_tools/functions.php';
 
 #
-#-------------[ 6. FIND ]----
+#-------------[ 8. FIND ]----
 #
 
 				<tr class="<?php echo $item_status ?>">
@@ -96,7 +95,7 @@ require PUN_ROOT.'include/quick_mod_tools/functions.php';
 						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
 
 #
-#-------------[ 7. REPLACE WITH ]----------------
+#-------------[ 9. REPLACE WITH ]----------------
 #
 
 				<tr class="<?php echo $item_status ?>" id="t<?php echo $cur_topic['id'] ?>">
@@ -105,5 +104,5 @@ require PUN_ROOT.'include/quick_mod_tools/functions.php';
 						<div class="<?php echo $icon_type ?>"><div class="nosize"><?php echo forum_number_format($topic_count + $start_from) ?></div></div>
 
 
-#-------------[ 14. SAVE AND UPLOAD ]----------------
+#-------------[ 10. SAVE AND UPLOAD ]----------------
 #
