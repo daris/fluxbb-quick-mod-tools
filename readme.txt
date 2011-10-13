@@ -51,7 +51,7 @@ if (basename($_SERVER['PHP_SELF']) == 'viewforum.php')
 {
 	$page_head['jquery'] = '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>';
 	
-	$page_head['qmt_css'] = '<link rel="stylesheet" type="text/css" href="'.$pun_config['o_base_url'].'/include/quick_mod_tools/style.css" />';
+	$page_head['qmt_css'] = '<link rel="stylesheet" type="text/css" href="'.get_base_url(true).'/include/quick_mod_tools/style.css" />';
 	
 	if (file_exists(PUN_ROOT.'lang/'.$pun_user['language'].'/quick_mod_tools.php'))
 		require PUN_ROOT.'lang/'.$pun_user['language'].'/quick_mod_tools.php';
@@ -62,8 +62,8 @@ if (basename($_SERVER['PHP_SELF']) == 'viewforum.php')
 	foreach ($lang_quick_mod_tools as $key => $value)
 		$lang_qmt_js[] = '\''.$key.'\': \''.$value.'\'';
 	
-	$page_head['qmt_lang_js'] = '<script type="text/javascript">var base_url = \''.$pun_config['o_base_url'].'\';var lang_quick_mod_tools = {'.implode(', ', $lang_qmt_js).'}</script>';
-	$page_head['qmt_js'] = '<script type="text/javascript" src="'.$pun_config['o_base_url'].'/include/quick_mod_tools/mod_tools.js"></script>';
+	$page_head['qmt_lang_js'] = '<script type="text/javascript">var base_url = \''.get_base_url(true).'\';var lang_quick_mod_tools = {'.implode(', ', $lang_qmt_js).'}</script>';
+	$page_head['qmt_js'] = '<script type="text/javascript" src="'.get_base_url(true).'/include/quick_mod_tools/mod_tools.js"></script>';
 }
 
 #
