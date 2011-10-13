@@ -2,10 +2,10 @@
 ##
 ##        Mod title:  Quick mod tools
 ##
-##      Mod version:  1.0.4-dev
+##      Mod version:  1.0.4
 ##  Works on FluxBB:  1.4.7
-##     Release date:  2011-10-11
-##      Review date:  2011-10-11
+##     Release date:  2011-10-13
+##      Review date:  2011-10-13
 ##           Author:  Daris (daris91@gmail.com)
 ##
 ##      Description:  Allows moderators quickly moderate topics (edit/delete/close/stick etc.)
