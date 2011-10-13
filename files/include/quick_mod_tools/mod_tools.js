@@ -8,7 +8,7 @@ function edit_subject(fid, id, submit_name)
 	subject = $('#t' + id + ' .tclcon div a').html();
 	subject = subject.replace(/"/g, '&quot;');
 	$('#t' + id + ' .mod-tools').html('');
-	$('#t' + id + ' .tclcon div').html('<form onsubmit="update_subject(' + fid + ', ' + id + '); return false;"><input type="text" id="subject" name="subject" size="35" value="' + subject + '" /> <input type="submit" value="' + submit_name + '" /> <a href="javascript:void(null)" onclick="cancel_edit()">Cancel</a></form>');
+	$('#t' + id + ' .tclcon div').html('<form onsubmit="update_subject(' + fid + ', ' + id + '); return false;"><input type="text" id="subject" name="subject" size="35" value="' + subject + '" /> <input type="submit" value="' + submit_name + '" /> <a href="javascript:void(null)" onclick="cancel_edit()">' + lang_quick_mod_tools['Cancel'] + '</a></form>');
 	$('#subject').focus();
 }
 
@@ -31,7 +31,7 @@ function moderate_topic(fid, id, action)
 {
 	topic_id = id;
 	
-	if (action == 'delete' && !confirm('Are you sure, you want to delete this topic?'))
+	if (action == 'delete' && !confirm(lang_quick_mod_tools['Delete topic confirm']))
 		return;
 	
 	$.get(mod_tools_url + '?fid=' + fid + '&tid=' + id + '&action=' + action, function(data) {moderate_topic_onready(data)});
