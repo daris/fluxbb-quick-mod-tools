@@ -2,7 +2,7 @@
 ##
 ##        Mod title:  Quick mod tools
 ##
-##      Mod version:  1.0.4
+##      Mod version:  1.0.4.1
 ##  Works on FluxBB:  1.4.7
 ##     Release date:  2011-10-13
 ##      Review date:  2011-10-13
