@@ -26,7 +26,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $reload = false;
 
 // Verify that the topic is valid
-$result = $db->query('SELECT p.poster_id'.(isset($_POST['subject']) ? ', p.message' : '').', t.closed FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON p.id=t.first_post_id WHERE t.id='.$topic_id.' AND t.forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
+$result = $db->query('SELECT p.poster_id'.(isset($_POST['subject']) ? ', p.message, p.id as pid' : '').', t.closed FROM '.$db->prefix.'topics AS t LEFT JOIN '.$db->prefix.'posts AS p ON p.id=t.first_post_id WHERE t.id='.$topic_id.' AND t.forum_id='.$fid) or error('Unable to check topics', __FILE__, __LINE__, $db->error());
 if (!$db->num_rows($result))
 	die($lang_common['Bad request']);
 	
@@ -56,17 +56,16 @@ elseif (isset($_POST['subject']))
 {
 	if (!$is_admmod && ($cur_topic['poster_id'] != $pun_user['id'] || $pun_user['g_edit_posts'] == '0' || $cur_topic['closed'] == '1'))
 		die($lang_common['No permission']);
-		
+
 	require PUN_ROOT.'include/search_idx.php';
 	$subject = $_POST['subject'];
-	$message = $_POST['message'];
 	if (empty($subject))
 		die($lang_post['No subject']);
 
 	$db->query('UPDATE '.$db->prefix.'topics SET subject=\''.$db->escape($subject).'\' WHERE id='.$topic_id.' AND forum_id='.$fid) or error('Unable to update topic subject', __FILE__, __LINE__, $db->error());
 
 	// We changed the subject, so we need to take that into account when we update the search words
-	update_search_index('edit', $topic_id, $message, $subject);
+	update_search_index('edit', $cur_topic['pid'], $cur_topic['message'], $subject);
 }
 
 elseif ($action == 'delete')
